@@ -37,11 +37,26 @@ function MainContainer() {
     return 0;
   }
 
+  function sortByPrice(a, b) {
+    if (a.price < b.price) {
+      return -1;
+    }
+    if (a.price > b.price) {
+      return 1;
+    }
+    return 0;
+  }
+
   function handleSort(sortVal) {
     if (sortVal === 'Alphabetically') {
       let alphabetizedStocks = [...allStocks];
       alphabetizedStocks.sort(alphabetize);
       setAllStocks(alphabetizedStocks);
+    }
+    if (sortVal === 'Price') {
+      let priceSortedStocks = [...allStocks];
+      priceSortedStocks.sort(sortByPrice);
+      setAllStocks(priceSortedStocks);
     }
   }
 
