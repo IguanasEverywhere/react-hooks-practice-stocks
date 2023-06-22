@@ -8,6 +8,7 @@ function MainContainer() {
   const [allStocks, setAllStocks] = useState([]);
   const [portfolioStocks, setPortfolioStocks] = useState([]);
 
+
   useEffect(() => {
     fetch('http://localhost:3001/stocks')
       .then(r => r.json())
@@ -26,10 +27,29 @@ function MainContainer() {
     setPortfolioStocks(updatedPortfolio);
   }
 
+  function alphabetize(a, b) {
+    if (a.name < b.name) {
+      return -1;
+    }
+    if (a.name > b.name) {
+      return 1;
+    }
+    return 0;
+  }
+
+  function handleSort(sortVal) {
+    if (sortVal === 'Alphabetically') {
+      let alphabetizedStocks = [...allStocks];
+      alphabetizedStocks.sort(alphabetize);
+      setAllStocks(alphabetizedStocks);
+    }
+  }
+
+
 
   return (
     <div>
-      <SearchBar />
+      <SearchBar handleSort={handleSort}/>
       <div className="row">
         <div className="col-8">
           <StockContainer stocksToDisplay={allStocks} handleStockClick={handleStockClick} />
