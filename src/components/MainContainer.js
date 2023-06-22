@@ -16,7 +16,10 @@ function MainContainer() {
 
   function handleStockClick(clickedTicker) {
     const stockToAddToPortfolio = allStocks.find((stock) => stock.ticker === clickedTicker);
-    setPortfolioStocks([...portfolioStocks, stockToAddToPortfolio]);
+    if (!portfolioStocks.find((stock) => stock.ticker === clickedTicker)) {
+      setPortfolioStocks([...portfolioStocks, stockToAddToPortfolio]);
+    }
+
   }
 
 
