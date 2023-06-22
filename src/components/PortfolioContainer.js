@@ -1,7 +1,7 @@
 import React from "react";
 import Stock from "./Stock";
 
-function PortfolioContainer({ portfolioStocks }) {
+function PortfolioContainer({ portfolioStocks, handlePortfolioStockClick }) {
 
   const portStocks = portfolioStocks.map((stock) =>
     <Stock
@@ -9,6 +9,7 @@ function PortfolioContainer({ portfolioStocks }) {
       name={stock.name}
       price={stock.price}
       ticker={stock.ticker}
+      handleStockClick={handlePortfolioStockClick}
     />
   )
   return (
