@@ -1,11 +1,13 @@
 import React from "react";
 
-function SearchBar({handleSort}) {
+function SearchBar({handleSort, filterByCategory}) {
 
   function handleChange(e) {
     const value = e.target.value;
     if (e.target.name === 'sort') {
       handleSort(value);
+    } else {
+      filterByCategory(value);
     }
   }
   return (

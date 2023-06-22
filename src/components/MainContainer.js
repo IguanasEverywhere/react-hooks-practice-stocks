@@ -7,6 +7,7 @@ function MainContainer() {
 
   const [allStocks, setAllStocks] = useState([]);
   const [portfolioStocks, setPortfolioStocks] = useState([]);
+  const [filterVal, setFilterVal] = useState('');
 
 
   useEffect(() => {
@@ -60,14 +61,18 @@ function MainContainer() {
     }
   }
 
+  function filterByCategory(filterCategory) {
+    setFilterVal(filterCategory);
+  }
+
 
 
   return (
     <div>
-      <SearchBar handleSort={handleSort}/>
+      <SearchBar handleSort={handleSort} filterByCategory={filterByCategory}/>
       <div className="row">
         <div className="col-8">
-          <StockContainer stocksToDisplay={allStocks} handleStockClick={handleStockClick} />
+          <StockContainer stocksToDisplay={filterVal === '' ? allStocks: allStocks.filter((stock) => stock.type === filterVal)} handleStockClick={handleStockClick} />
         </div>
         <div className="col-4">
           <PortfolioContainer
